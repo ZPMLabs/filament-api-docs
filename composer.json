@@ -1,0 +1,69 @@
+{
+    "name": "infinityxtech/filament-api-docs-builder",
+    "description": "This is my package filament-api-docs-builder",
+    "keywords": [
+        "infinityxtech",
+        "laravel",
+        "filament-api-docs-builder"
+    ],
+    "homepage": "https://github.com/infinityxtech/filament-api-docs-builder",
+    "support": {
+        "issues": "https://github.com/infinityxtech/filament-api-docs-builder/issues",
+        "source": "https://github.com/infinityxtech/filament-api-docs-builder"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "InfinityXTech",
+            "email": "developer@infinity-x.tech",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "filament/filament": "^3.0",
+        "spatie/laravel-package-tools": "^1.15.0"
+    },
+    "require-dev": {
+        "nunomaduro/collision": "^7.9",
+        "orchestra/testbench": "^8.0",
+        "pestphp/pest": "^2.1",
+        "pestphp/pest-plugin-arch": "^2.0",
+        "pestphp/pest-plugin-laravel": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "InfinityXTech\\FilamentApiDocsBuilder\\": "src/",
+            "InfinityXTech\\FilamentApiDocsBuilder\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "InfinityXTech\\FilamentApiDocsBuilder\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "InfinityXTech\\FilamentApiDocsBuilder\\FilamentApiDocsBuilderServiceProvider"
+            ],
+            "aliases": {
+                "FilamentApiDocsBuilder": "InfinityXTech\\FilamentApiDocsBuilder\\Facades\\FilamentApiDocsBuilder"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

@@ -14,7 +14,9 @@ class FilamentApiDocsBuilderPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
-        //
+        $panel->resources(array_filter([
+            config('filament-api-docs-builder.resource'),
+        ]));
     }
 
     public function boot(Panel $panel): void

@@ -1,6 +1,6 @@
 {
     "name": "infinityxtech/filament-api-docs-builder",
-    "description": "This is my package filament-api-docs-builder",
+    "description": "This package will give you the best API docs building experience.",
     "keywords": [
         "infinityxtech",
         "laravel",
@@ -11,7 +11,7 @@
         "issues": "https://github.com/infinityxtech/filament-api-docs-builder/issues",
         "source": "https://github.com/infinityxtech/filament-api-docs-builder"
     },
-    "license": "MIT",
+    "license": "proprietary",
     "authors": [
         {
             "name": "InfinityXTech",
@@ -22,7 +22,9 @@
     "require": {
         "php": "^8.1",
         "filament/filament": "^3.0",
-        "spatie/laravel-package-tools": "^1.15.0"
+        "guava/filament-icon-picker": "^2.2",
+        "spatie/laravel-package-tools": "^1.15.0",
+        "tempest/highlight": "^2.10"
     },
     "require-dev": {
         "nunomaduro/collision": "^7.9",

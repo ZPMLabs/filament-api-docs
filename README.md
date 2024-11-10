@@ -11,13 +11,27 @@ This is where your description should go. Limit it to a paragraph or two. Consid
 
 ## Installation
 
-You can install the package via composer:
+You can install the package via composer repositories:
+```json
+"repositories": [
+    {
+        "type": "vsc",
+        "url": "https://github.com/InfinityXTech/filament-api-docs"
+    }
+]
+```
 
 ```bash
 composer require infinityxtech/filament-api-docs-builder
 ```
 
-You can publish and run the migrations with:
+You can install the package with:
+
+```bash
+php artisan filament-api-docs-builder:install
+```
+
+Otherwise you can publish and run the migrations with:
 
 ```bash
 php artisan vendor:publish --tag="filament-api-docs-builder-migrations"
@@ -36,25 +50,74 @@ Optionally, you can publish the views using
 php artisan vendor:publish --tag="filament-api-docs-builder-views"
 ```
 
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
 
 ## Usage
 
+You can use this package by registering the plugin inside you filament service provider.
+
 ```php
-$filamentApiDocsBuilder = new InfinityXTech\FilamentApiDocsBuilder();
-echo $filamentApiDocsBuilder->echoPhrase('Hello, InfinityXTech!');
+->plugin(InfinityXTech\FilamentApiDocsBuilder\FilamentApiDocsBuilderPlugin::make())
 ```
 
-## Testing
+Otherwise you can make your own resource and `ApiDocsFormBuilder` for form generation.
 
-```bash
-composer test
+```php
+use InfinityXTech\FilamentApiDocsBuilder\Filament\Forms\ApiDocsFormBuilder;
+
+public static function getModel(): string
+{
+    return config('filament-api-docs-builder.model');
+}
+
+public static function form(Form $form): Form
+{
+    return $form->schema(ApiDocsFormBuilder::make());
+}
 ```
+
+And `ApiDocsInfolistBuilder` for infolist generation.
+
+```php
+
+use InfinityXTech\FilamentApiDocsBuilder\Filament\Infolists\ApiDocsInfolistBuilder;
+
+public static function getResource(): string
+{
+    return config('filament-api-docs-builder.resource');
+}
+
+public function infolist(Infolist $infolist): Infolist
+{
+    $record = $this->getRecord();
+
+    $this->heading = '[v' . $record->version . '] ' . $record->title;
+    $this->subheading = $record->description;
+
+    return $infolist->schema(ApiDocsInfolistBuilder::make($record));
+}
+```
+
+There are also two actions for export and import docs with postman json standard.
+
+```php
+use InfinityXTech\FilamentApiDocsBuilder\Filament\Actions\CollectionDownloaderAction;
+use InfinityXTech\FilamentApiDocsBuilder\Filament\Actions\CollectionImporterAction;
+
+protected function getHeaderActions(): array
+{
+    return [
+        CollectionDownloaderAction::make('downloader'),
+        CollectionImporterAction::make('importer'),
+    ];
+}
+```
+
+This package includes warious different code builders but you can add your own in config `code_builders` array.
+You can also predefine your enpoint parameter in config `predefined_params` array. [Check config for more details]
+
+If you are using multi tenancy you need to set your tenant model class in config with method `getTenant`.
+
+If you want to use infolist publicly, just make a public filament page and pass in infolist.
 
 ## Changelog
 
@@ -75,4 +138,4 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+Proprietary license. Please see [License File](LICENSE.md) for more information.

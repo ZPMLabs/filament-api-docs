@@ -124,6 +124,8 @@ If you want to use infolist publicly, just make a public filament page and pass 
 
 ![image](https://github.com/user-attachments/assets/e8183f56-a001-48ba-8127-74a6478c9bcb)
 ![image](https://github.com/user-attachments/assets/fbee6f2e-1dec-4487-9cc0-05e659170f3d)
+![image](https://github.com/user-attachments/assets/ae1f621e-0b31-4c62-9fb3-3a85b1942346)
+
 
 ## Changelog
 

@@ -1,19 +1,18 @@
 ![image](https://github.com/user-attachments/assets/ea4b0f8b-03f5-4566-bcfb-0030b1217df3)
 
-# This is my package filament-api-docs-builder
+# Filament Api Docs Builder
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/infinityxtech/filament-api-docs-builder.svg?style=flat-square)](https://packagist.org/packages/infinityxtech/filament-api-docs-builder)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/infinityxtech/filament-api-docs-builder/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/infinityxtech/filament-api-docs-builder/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/infinityxtech/filament-api-docs-builder/fix-php-code-styling.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/infinityxtech/filament-api-docs-builder/actions?query=workflow%3A"Fix+PHP+code+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/infinityxtech/filament-api-docs-builder.svg?style=flat-square)](https://packagist.org/packages/infinityxtech/filament-api-docs-builder)
 
-
-
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+This package allows you to build a good looking and functional api documentation. Including exporting and importing actions with postman standard.
 
 ## Installation
 
 You can install the package via composer repositories:
+
 ```json
 "repositories": [
     {
@@ -114,12 +113,17 @@ protected function getHeaderActions(): array
 }
 ```
 
-This package includes warious different code builders but you can add your own in config `code_builders` array.
+This package includes various different code builders but you can add your own in config `code_builders` array.
 You can also predefine your enpoint parameter in config `predefined_params` array. [Check config for more details]
 
 If you are using multi tenancy you need to set your tenant model class in config with method `getTenant`.
 
 If you want to use infolist publicly, just make a public filament page and pass in infolist.
+
+## Screenshots
+
+![image](https://github.com/user-attachments/assets/e8183f56-a001-48ba-8127-74a6478c9bcb)
+![image](https://github.com/user-attachments/assets/fbee6f2e-1dec-4487-9cc0-05e659170f3d)
 
 ## Changelog
 

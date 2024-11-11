@@ -46,16 +46,11 @@ class Code extends Entry implements HasAffixActions
 
         $language = $this->language; // Determine the language for highlighting.
 
-        // Format the state as pretty-printed JSON if it's JSON or not a string.
-        $formated = !is_string($state) || $language === 'json'
-            ? json_encode($state, JSON_PRETTY_PRINT)
-            : $state;
-
         // Highlight the code using the Tempest library and return as HTML-safe string.
         return new HtmlString(
             (new Highlighter(
                 new InlineTheme(__DIR__ . '/../../../../vendor/tempest/highlight/src/Themes/Css/solarized-dark.css')
-            ))->parse($formated, $language)
+            ))->parse($state, $language)
         );
     }
 

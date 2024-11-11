@@ -3,7 +3,7 @@
 @endphp
 
 <x-dynamic-component :component="$getEntryWrapperView()" :entry="$entry" wire:ignore>
-    <div 
+    <div class="overflow-auto"
         x-data="{
             buttonText: 'Copy',
             codeElID: '{{ $codeID }}',

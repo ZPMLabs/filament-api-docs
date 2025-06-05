@@ -1,6 +1,6 @@
 <?php
 
-namespace InfinityXTech\FilamentApiDocsBuilder;
+namespace ZPMLabs\FilamentApiDocsBuilder;
 
 use Filament\Support\Assets\Css;
 use Filament\Support\Facades\FilamentAsset;
@@ -22,7 +22,7 @@ class FilamentApiDocsBuilderServiceProvider extends PackageServiceProvider
                     ->publishConfigFile()
                     ->publishMigrations()
                     ->askToRunMigrations()
-                    ->askToStarRepoOnGitHub('infinityxtech/filament-api-docs-builder');
+                    ->askToStarRepoOnGitHub('zpmlabs/filament-api-docs-builder');
             });
 
         $configFileName = $package->shortName();
@@ -46,7 +46,7 @@ class FilamentApiDocsBuilderServiceProvider extends PackageServiceProvider
 
     protected function getAssetPackageName(): ?string
     {
-        return 'infinityxtech/filament-api-docs-builder';
+        return 'zpmlabs/filament-api-docs-builder';
     }
 
     /**

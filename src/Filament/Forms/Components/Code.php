@@ -1,6 +1,6 @@
 <?php
 
-namespace InfinityXTech\FilamentApiDocsBuilder\Filament\Forms\Components;
+namespace ZPMLabs\FilamentApiDocsBuilder\Filament\Forms\Components;
 
 use Closure;
 use Filament\Infolists\Components\Concerns;

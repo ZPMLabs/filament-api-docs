@@ -1,11 +1,11 @@
 <?php
 
-namespace InfinityXTech\FilamentApiDocsBuilder\Filament\Resources\ApiDocsResource\Pages;
+namespace ZPMLabs\FilamentApiDocsBuilder\Filament\Resources\ApiDocsResource\Pages;
 
 use Filament\Infolists\Infolist;
 use Filament\Resources\Pages\ViewRecord;
-use InfinityXTech\FilamentApiDocsBuilder\Filament\Actions\CollectionDownloaderAction;
-use InfinityXTech\FilamentApiDocsBuilder\Filament\Infolists\ApiDocsInfolistBuilder;
+use ZPMLabs\FilamentApiDocsBuilder\Filament\Actions\CollectionDownloaderAction;
+use ZPMLabs\FilamentApiDocsBuilder\Filament\Infolists\ApiDocsInfolistBuilder;
 
 class ViewApiDocs extends ViewRecord
 {    

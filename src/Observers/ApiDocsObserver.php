@@ -1,10 +1,10 @@
 <?php
 
-namespace InfinityXTech\FilamentApiDocsBuilder\Observers;
+namespace ZPMLabs\FilamentApiDocsBuilder\Observers;
 
 use Illuminate\Container\Attributes\CurrentUser;
 use Illuminate\Database\Eloquent\Model;
-use InfinityXTech\FilamentApiDocsBuilder\Models\ApiDocs;
+use ZPMLabs\FilamentApiDocsBuilder\Models\ApiDocs;
 
 class ApiDocsObserver
 {    

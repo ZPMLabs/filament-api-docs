@@ -1,11 +1,11 @@
 <?php
 
-namespace InfinityXTech\FilamentApiDocsBuilder\Filament\Forms;
+namespace ZPMLabs\FilamentApiDocsBuilder\Filament\Forms;
 
-use InfinityXTech\FilamentApiDocsBuilder\Actions\PredefineCodeBuilderAction;
-use InfinityXTech\FilamentApiDocsBuilder\Enums\CodeStyle;
-use InfinityXTech\FilamentApiDocsBuilder\Enums\HttpStatuses;
-use InfinityXTech\FilamentApiDocsBuilder\Enums\RequestType;
+use ZPMLabs\FilamentApiDocsBuilder\Actions\PredefineCodeBuilderAction;
+use ZPMLabs\FilamentApiDocsBuilder\Enums\CodeStyle;
+use ZPMLabs\FilamentApiDocsBuilder\Enums\HttpStatuses;
+use ZPMLabs\FilamentApiDocsBuilder\Enums\RequestType;
 use Filament\Forms;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Tabs\Tab;

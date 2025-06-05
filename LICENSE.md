@@ -1,10 +1,10 @@
 # Proprietary License
 
-**Copyright (c) infinityxtech <developer@infinity-x.tech>**
+**Copyright (c) zpmlabs <developer@infinity-x.tech>**
 
 All rights reserved.
 
-This software and associated documentation files (the "Software") are the property of infinityxtech. Unauthorized use, reproduction, modification, distribution, or sharing of the Software, in whole or in part, is strictly prohibited without prior written permission from infinityxtech.
+This software and associated documentation files (the "Software") are the property of zpmlabs. Unauthorized use, reproduction, modification, distribution, or sharing of the Software, in whole or in part, is strictly prohibited without prior written permission from zpmlabs.
 
 Permission is hereby granted to the licensee to use the Software solely for the purpose specified in the license agreement, subject to the following conditions:
 

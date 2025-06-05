@@ -1,6 +1,6 @@
 <?php
 
-namespace InfinityXTech\FilamentApiDocsBuilder\Enums;
+namespace ZPMLabs\FilamentApiDocsBuilder\Enums;
 
 use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasIcon;

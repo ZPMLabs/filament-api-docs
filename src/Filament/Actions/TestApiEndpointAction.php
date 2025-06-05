@@ -1,8 +1,8 @@
 <?php
 
-namespace InfinityXTech\FilamentApiDocsBuilder\Filament\Actions;
+namespace ZPMLabs\FilamentApiDocsBuilder\Filament\Actions;
 
-use InfinityXTech\FilamentApiDocsBuilder\Enums\HttpStatuses;
+use ZPMLabs\FilamentApiDocsBuilder\Enums\HttpStatuses;
 use Filament\Infolists\Components\Actions\Action;
 use Illuminate\Support\Facades\Http;
 use InvalidArgumentException;

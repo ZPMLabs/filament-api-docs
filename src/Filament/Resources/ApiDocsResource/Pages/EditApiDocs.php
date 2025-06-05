@@ -1,6 +1,6 @@
 <?php
 
-namespace InfinityXTech\FilamentApiDocsBuilder\Filament\Resources\ApiDocsResource\Pages;
+namespace ZPMLabs\FilamentApiDocsBuilder\Filament\Resources\ApiDocsResource\Pages;
 
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;

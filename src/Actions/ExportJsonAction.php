@@ -1,6 +1,6 @@
 <?php
 
-namespace InfinityXTech\FilamentApiDocsBuilder\Actions;
+namespace ZPMLabs\FilamentApiDocsBuilder\Actions;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Response;

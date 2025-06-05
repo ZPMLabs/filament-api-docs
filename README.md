@@ -2,10 +2,10 @@
 
 # Filament Api Docs Builder
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/infinityxtech/filament-api-docs-builder.svg?style=flat-square)](https://packagist.org/packages/infinityxtech/filament-api-docs-builder)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/infinityxtech/filament-api-docs-builder/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/infinityxtech/filament-api-docs-builder/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/infinityxtech/filament-api-docs-builder/fix-php-code-styling.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/infinityxtech/filament-api-docs-builder/actions?query=workflow%3A"Fix+PHP+code+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/infinityxtech/filament-api-docs-builder.svg?style=flat-square)](https://packagist.org/packages/infinityxtech/filament-api-docs-builder)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/zpmlabs/filament-api-docs-builder.svg?style=flat-square)](https://packagist.org/packages/zpmlabs/filament-api-docs-builder)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/zpmlabs/filament-api-docs-builder/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/zpmlabs/filament-api-docs-builder/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/zpmlabs/filament-api-docs-builder/fix-php-code-styling.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/zpmlabs/filament-api-docs-builder/actions?query=workflow%3A"Fix+PHP+code+styling"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/zpmlabs/filament-api-docs-builder.svg?style=flat-square)](https://packagist.org/packages/zpmlabs/filament-api-docs-builder)
 
 This package allows you to build a good looking and functional api documentation. Including exporting and importing actions with postman standard.
 
@@ -17,13 +17,13 @@ You can install the package via composer repositories:
 "repositories": [
     {
         "type": "vsc",
-        "url": "https://github.com/InfinityXTech/filament-api-docs"
+        "url": "https://github.com/ZPMLabs/filament-api-docs"
     }
 ]
 ```
 
 ```bash
-composer require infinityxtech/filament-api-docs-builder
+composer require zpmlabs/filament-api-docs-builder
 ```
 
 You can install the package with:
@@ -57,13 +57,13 @@ php artisan vendor:publish --tag="filament-api-docs-builder-views"
 You can use this package by registering the plugin inside you filament service provider.
 
 ```php
-->plugin(InfinityXTech\FilamentApiDocsBuilder\FilamentApiDocsBuilderPlugin::make())
+->plugin(ZPMLabs\FilamentApiDocsBuilder\FilamentApiDocsBuilderPlugin::make())
 ```
 
 Otherwise you can make your own resource and `ApiDocsFormBuilder` for form generation.
 
 ```php
-use InfinityXTech\FilamentApiDocsBuilder\Filament\Forms\ApiDocsFormBuilder;
+use ZPMLabs\FilamentApiDocsBuilder\Filament\Forms\ApiDocsFormBuilder;
 
 public static function getModel(): string
 {
@@ -80,7 +80,7 @@ And `ApiDocsInfolistBuilder` for infolist generation.
 
 ```php
 
-use InfinityXTech\FilamentApiDocsBuilder\Filament\Infolists\ApiDocsInfolistBuilder;
+use ZPMLabs\FilamentApiDocsBuilder\Filament\Infolists\ApiDocsInfolistBuilder;
 
 public static function getResource(): string
 {
@@ -101,8 +101,8 @@ public function infolist(Infolist $infolist): Infolist
 There are also two actions for export and import docs with postman json standard.
 
 ```php
-use InfinityXTech\FilamentApiDocsBuilder\Filament\Actions\CollectionDownloaderAction;
-use InfinityXTech\FilamentApiDocsBuilder\Filament\Actions\CollectionImporterAction;
+use ZPMLabs\FilamentApiDocsBuilder\Filament\Actions\CollectionDownloaderAction;
+use ZPMLabs\FilamentApiDocsBuilder\Filament\Actions\CollectionImporterAction;
 
 protected function getHeaderActions(): array
 {
@@ -141,7 +141,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [InfinityXTech](https://github.com/infinityxtech)
+- [ZPMLabs](https://github.com/zpmlabs)
 - [All Contributors](../../contributors)
 
 ## License

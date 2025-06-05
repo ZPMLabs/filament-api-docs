@@ -1,6 +1,6 @@
 <?php
 
-namespace InfinityXTech\FilamentApiDocsBuilder;
+namespace ZPMLabs\FilamentApiDocsBuilder;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;

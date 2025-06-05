@@ -1,6 +1,6 @@
 <?php
 
-namespace InfinityXTech\FilamentApiDocsBuilder\CodeBuilders;
+namespace ZPMLabs\FilamentApiDocsBuilder\CodeBuilders;
 
 /**
  * Interface CodeBuilderContract

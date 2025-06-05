@@ -33,15 +33,15 @@ return [
     ],
 
     // Resource class used for managing API documentation within Filament
-    'resource' => \InfinityXTech\FilamentApiDocsBuilder\Filament\Resources\ApiDocsResource::class,
+    'resource' => \ZPMLabs\FilamentApiDocsBuilder\Filament\Resources\ApiDocsResource::class,
 
     // Model class representing API documentation
-    'model' => \InfinityXTech\FilamentApiDocsBuilder\Models\ApiDocs::class,
+    'model' => \ZPMLabs\FilamentApiDocsBuilder\Models\ApiDocs::class,
 
     // Configuration for the importer, including predefined code builders
     'importer' => [
         'predefined_codes' => [
-            \InfinityXTech\FilamentApiDocsBuilder\Enums\PredefinedCodeBuilders::cURL // Default predefined code builder
+            \ZPMLabs\FilamentApiDocsBuilder\Enums\PredefinedCodeBuilders::cURL // Default predefined code builder
         ]
     ],
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace InfinityXTech\FilamentApiDocsBuilder\Filament\Actions;
+namespace ZPMLabs\FilamentApiDocsBuilder\Filament\Actions;
 
 use Filament\Actions\Action;
-use InfinityXTech\FilamentApiDocsBuilder\Actions\ExportJsonAction;
+use ZPMLabs\FilamentApiDocsBuilder\Actions\ExportJsonAction;
 
 /**
  * Class CollectionDownloaderAction

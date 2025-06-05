@@ -1,13 +1,13 @@
 <?php
 
-namespace InfinityXTech\FilamentApiDocsBuilder\Filament\Actions;
+namespace ZPMLabs\FilamentApiDocsBuilder\Filament\Actions;
 
 use Filament\Actions\Action;
-use InfinityXTech\FilamentApiDocsBuilder\Actions\ImportCollectionAction;
-use InfinityXTech\FilamentApiDocsBuilder\Models\ApiDocs;
+use ZPMLabs\FilamentApiDocsBuilder\Actions\ImportCollectionAction;
+use ZPMLabs\FilamentApiDocsBuilder\Models\ApiDocs;
 use Filament\Forms\Components\FileUpload;
 use Filament\Notifications\Notification;
-use InfinityXTech\FilamentApiDocsBuilder\Filament\Resources\ApiDocsResource\Pages\EditApiDocs;
+use ZPMLabs\FilamentApiDocsBuilder\Filament\Resources\ApiDocsResource\Pages\EditApiDocs;
 
 /**
  * Class CollectionImporterAction

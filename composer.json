@@ -1,20 +1,20 @@
 {
-    "name": "infinityxtech/filament-api-docs-builder",
+    "name": "zpmlabs/filament-api-docs-builder",
     "description": "This package will give you the best API docs building experience.",
     "keywords": [
-        "infinityxtech",
+        "zpmlabs",
         "laravel",
         "filament-api-docs-builder"
     ],
-    "homepage": "https://github.com/infinityxtech/filament-api-docs-builder",
+    "homepage": "https://github.com/zpmlabs/filament-api-docs-builder",
     "support": {
-        "issues": "https://github.com/infinityxtech/filament-api-docs-builder/issues",
-        "source": "https://github.com/infinityxtech/filament-api-docs-builder"
+        "issues": "https://github.com/zpmlabs/filament-api-docs-builder/issues",
+        "source": "https://github.com/zpmlabs/filament-api-docs-builder"
     },
     "license": "proprietary",
     "authors": [
         {
-            "name": "InfinityXTech",
+            "name": "ZPMLabs",
             "email": "developer@infinity-x.tech",
             "role": "Developer"
         }
@@ -35,13 +35,13 @@
     },
     "autoload": {
         "psr-4": {
-            "InfinityXTech\\FilamentApiDocsBuilder\\": "src/",
-            "InfinityXTech\\FilamentApiDocsBuilder\\Database\\Factories\\": "database/factories/"
+            "ZPMLabs\\FilamentApiDocsBuilder\\": "src/",
+            "ZPMLabs\\FilamentApiDocsBuilder\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "InfinityXTech\\FilamentApiDocsBuilder\\Tests\\": "tests/"
+            "ZPMLabs\\FilamentApiDocsBuilder\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -59,10 +59,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "InfinityXTech\\FilamentApiDocsBuilder\\FilamentApiDocsBuilderServiceProvider"
+                "ZPMLabs\\FilamentApiDocsBuilder\\FilamentApiDocsBuilderServiceProvider"
             ],
             "aliases": {
-                "FilamentApiDocsBuilder": "InfinityXTech\\FilamentApiDocsBuilder\\Facades\\FilamentApiDocsBuilder"
+                "FilamentApiDocsBuilder": "ZPMLabs\\FilamentApiDocsBuilder\\Facades\\FilamentApiDocsBuilder"
             }
         }
     },

@@ -1,10 +1,10 @@
 <?php
 
-namespace InfinityXTech\FilamentApiDocsBuilder\Models;
+namespace ZPMLabs\FilamentApiDocsBuilder\Models;
 
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
-use InfinityXTech\FilamentApiDocsBuilder\Observers\ApiDocsObserver;
+use ZPMLabs\FilamentApiDocsBuilder\Observers\ApiDocsObserver;
 
 #[ObservedBy(ApiDocsObserver::class)]
 class ApiDocs extends Model

@@ -1,9 +1,9 @@
 <?php
 
-namespace InfinityXTech\FilamentApiDocsBuilder\Filament\Resources;
+namespace ZPMLabs\FilamentApiDocsBuilder\Filament\Resources;
 
-use InfinityXTech\FilamentApiDocsBuilder\Filament\Resources\ApiDocsResource\Pages;
-use InfinityXTech\FilamentApiDocsBuilder\Filament\Forms\ApiDocsFormBuilder;
+use ZPMLabs\FilamentApiDocsBuilder\Filament\Resources\ApiDocsResource\Pages;
+use ZPMLabs\FilamentApiDocsBuilder\Filament\Forms\ApiDocsFormBuilder;
 use Filament\Resources\Resource;
 use Filament\Tables\Table;
 use Filament\Forms\Form;

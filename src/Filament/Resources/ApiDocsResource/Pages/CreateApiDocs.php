@@ -1,9 +1,9 @@
 <?php
 
-namespace InfinityXTech\FilamentApiDocsBuilder\Filament\Resources\ApiDocsResource\Pages;
+namespace ZPMLabs\FilamentApiDocsBuilder\Filament\Resources\ApiDocsResource\Pages;
 
 use Filament\Resources\Pages\CreateRecord;
-use InfinityXTech\FilamentApiDocsBuilder\Filament\Actions\CollectionImporterAction;
+use ZPMLabs\FilamentApiDocsBuilder\Filament\Actions\CollectionImporterAction;
 
 class CreateApiDocs extends CreateRecord
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace InfinityXTech\FilamentApiDocsBuilder\CodeBuilders;
+namespace ZPMLabs\FilamentApiDocsBuilder\CodeBuilders;
 
-use InfinityXTech\FilamentApiDocsBuilder\Enums\CodeStyle;
+use ZPMLabs\FilamentApiDocsBuilder\Enums\CodeStyle;
 
 /**
  * Class PHPCodeBuilder

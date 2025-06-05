@@ -1,6 +1,6 @@
 <?php
 
-namespace InfinityXTech\FilamentApiDocsBuilder\Filament\Infolists;
+namespace ZPMLabs\FilamentApiDocsBuilder\Filament\Infolists;
 
 use Filament\Support\Enums\MaxWidth;
 use Illuminate\Contracts\Support\Htmlable;
@@ -13,9 +13,9 @@ use Filament\Infolists\Components\KeyValueEntry;
 use Filament\Infolists\Components\Tabs;
 use Filament\Infolists\Components\Tabs\Tab;
 use Illuminate\Database\Eloquent\Model;
-use InfinityXTech\FilamentApiDocsBuilder\Actions\PredefineCodeBuilderAction;
-use InfinityXTech\FilamentApiDocsBuilder\Filament\Actions\TestApiEndpointAction;
-use InfinityXTech\FilamentApiDocsBuilder\Filament\Forms\Components\Code;
+use ZPMLabs\FilamentApiDocsBuilder\Actions\PredefineCodeBuilderAction;
+use ZPMLabs\FilamentApiDocsBuilder\Filament\Actions\TestApiEndpointAction;
+use ZPMLabs\FilamentApiDocsBuilder\Filament\Forms\Components\Code;
 
 /**
  * Class ApiDocsInfolistBuilder

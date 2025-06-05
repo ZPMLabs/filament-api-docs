@@ -1,6 +1,6 @@
 <?php
 
-namespace InfinityXTech\FilamentApiDocsBuilder\Enums;
+namespace ZPMLabs\FilamentApiDocsBuilder\Enums;
 
 /**
  * Enum PredefinedCodeBuilders

@@ -1,17 +1,17 @@
 <?php
 
-namespace InfinityXTech\FilamentApiDocsBuilder\Actions;
+namespace ZPMLabs\FilamentApiDocsBuilder\Actions;
 
 use Illuminate\Support\Collection;
-use InfinityXTech\FilamentApiDocsBuilder\CodeBuilders\CSharpCodeBuilder;
-use InfinityXTech\FilamentApiDocsBuilder\CodeBuilders\CurlCodeBuilder;
-use InfinityXTech\FilamentApiDocsBuilder\CodeBuilders\GoCodeBuilder;
-use InfinityXTech\FilamentApiDocsBuilder\CodeBuilders\JavaCodeBuilder;
-use InfinityXTech\FilamentApiDocsBuilder\CodeBuilders\JavascriptCodeBuilder;
-use InfinityXTech\FilamentApiDocsBuilder\CodeBuilders\LaravelCodeBuilder;
-use InfinityXTech\FilamentApiDocsBuilder\CodeBuilders\NodeJsCodeBuilder;
-use InfinityXTech\FilamentApiDocsBuilder\CodeBuilders\PHPCodeBuilder;
-use InfinityXTech\FilamentApiDocsBuilder\CodeBuilders\RustCodeBuilder;
+use ZPMLabs\FilamentApiDocsBuilder\CodeBuilders\CSharpCodeBuilder;
+use ZPMLabs\FilamentApiDocsBuilder\CodeBuilders\CurlCodeBuilder;
+use ZPMLabs\FilamentApiDocsBuilder\CodeBuilders\GoCodeBuilder;
+use ZPMLabs\FilamentApiDocsBuilder\CodeBuilders\JavaCodeBuilder;
+use ZPMLabs\FilamentApiDocsBuilder\CodeBuilders\JavascriptCodeBuilder;
+use ZPMLabs\FilamentApiDocsBuilder\CodeBuilders\LaravelCodeBuilder;
+use ZPMLabs\FilamentApiDocsBuilder\CodeBuilders\NodeJsCodeBuilder;
+use ZPMLabs\FilamentApiDocsBuilder\CodeBuilders\PHPCodeBuilder;
+use ZPMLabs\FilamentApiDocsBuilder\CodeBuilders\RustCodeBuilder;
 
 class PredefineCodeBuilderAction
 {

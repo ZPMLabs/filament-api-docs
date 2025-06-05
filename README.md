@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/ea4b0f8b-03f5-4566-bcfb-0030b1217df3)
+![image](https://github.com/user-attachments/assets/d3ba9e91-6998-4a8c-b815-eacb0729c3a8)
 
 # Filament Api Docs Builder
 

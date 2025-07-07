@@ -1,5 +1,6 @@
 {
     "name": "zpmlabs/filament-api-docs-builder",
+    "version": "2.0.1",
     "description": "This package will give you the best API docs building experience.",
     "keywords": [
         "zpmlabs",
@@ -20,9 +21,9 @@
         }
     ],
     "require": {
-        "php": "^8.1",
-        "filament/filament": "^3.0",
-        "guava/filament-icon-picker": "^2.2",
+        "php": "^8.2",
+        "filament/filament": "^4.0",
+        "zpmlabs/filament-icon-picker": "^1.0.0",
         "spatie/laravel-package-tools": "^1.15.0",
         "tempest/highlight": "^2.10"
     },

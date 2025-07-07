@@ -2,16 +2,24 @@
 
 namespace ZPMLabs\FilamentApiDocsBuilder\Filament\Forms;
 
+use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
+use Filament\Schemas\Components\Utilities\Get;
 use ZPMLabs\FilamentApiDocsBuilder\Actions\PredefineCodeBuilderAction;
 use ZPMLabs\FilamentApiDocsBuilder\Enums\CodeStyle;
 use ZPMLabs\FilamentApiDocsBuilder\Enums\HttpStatuses;
 use ZPMLabs\FilamentApiDocsBuilder\Enums\RequestType;
-use Filament\Forms;
-use Filament\Forms\Components\Actions\Action;
-use Filament\Forms\Components\Tabs\Tab;
-use Filament\Forms\Get;
+use Filament\Actions\Action;
 use Filament\Support\Colors\Color;
-use Guava\FilamentIconPicker\Forms\IconPicker;
+use ZPMLabs\FilamentIconPicker\Forms\IconPicker;
 
 class ApiDocsFormBuilder {
     public static function make () {
@@ -22,9 +30,10 @@ class ApiDocsFormBuilder {
     }
 
     public static function builder () {
-        return Forms\Components\Section::make(__('Docs & Endpoints'))
+        return Section::make(__('Docs & Endpoints'))
+        ->columnSpanFull()
         ->schema([
-            Forms\Components\Repeater::make('data')
+            Repeater::make('data')
                 ->hiddenLabel()
                 ->cloneable()
                 ->deleteAction(
@@ -44,7 +53,7 @@ class ApiDocsFormBuilder {
                     return $position++ > 1;
                 })
                 ->schema([
-                    Forms\Components\Tabs::make()
+                    Tabs::make()
                         ->schema([
                             static::detailsTab(),
                             static::parametersTab(),
@@ -57,36 +66,37 @@ class ApiDocsFormBuilder {
     }
 
     public static function mainDetails () {
-        return Forms\Components\Section::make('Main Details')
+        return Section::make('Main Details')
             ->schema([
-                Forms\Components\Grid::make()
+                Grid::make()
                     ->schema([
-                        Forms\Components\TextInput::make('title')
+                        TextInput::make('title')
                             ->columnSpanFull()
                             ->required(),
-                        Forms\Components\TextInput::make('slug')
+                        TextInput::make('slug')
                             ->columnSpanFull()
                             ->unique(ignoreRecord: true)
                             ->required(),
-                        Forms\Components\TextInput::make('version')
+                        TextInput::make('version')
                             ->default('1')
                             ->columnSpanFull()
                             ->required(),
                     ])->columnSpan(1),
-                Forms\Components\MarkdownEditor::make('description'),
-            ])->columns(2);
+                MarkdownEditor::make('description'),
+            ])
+            ->columnSpanFull();
     }
 
-    public static function parametersTab (): tab {
+    public static function parametersTab (): Tab {
         $predefinedParams = collect(config('filament-api-docs-builder.predefined_params'));
 
         $predefinedParamsOptions = $predefinedParams->mapWithKeys(function ($item) {
             return [$item['name'] => $item['name'] . ': ' . $item['value']];
         });
 
-        return Forms\Components\Tabs\Tab::make(__('Parameters'))
+        return Tab::make(__('Parameters'))
             ->schema([
-                Forms\Components\Repeater::make('instructions.params')
+                Repeater::make('instructions.params')
                     ->cloneable()
                     ->deleteAction(
                         fn (Action $action) => $action->requiresConfirmation(),
@@ -103,18 +113,17 @@ class ApiDocsFormBuilder {
                     ->collapsible()
                     ->collapsed()
                     ->schema([
-                        Forms\Components\Grid::make()
+                        Grid::make()
                             ->columnSpan(1)
                             ->columns()
                             ->schema([
-                                Forms\Components\Select::make('predefined_params')
+                                Select::make('predefined_params')
                                     ->label(__('Predefined parameters'))
                                     ->live()
                                     ->hidden($predefinedParams->count() === 0)
                                     ->afterStateUpdated(function ($state, callable $set) use ($predefinedParams) {
                                         
                                         if ($state && $param = $predefinedParams->where('name', $state)->first()) {
-                                            dump($param);
                                 
                                             // Set the corresponding fields based on the selected param
                                             $set('param_location', $param['location']);
@@ -125,7 +134,7 @@ class ApiDocsFormBuilder {
                                         }
                                     })
                                     ->options($predefinedParamsOptions),
-                                Forms\Components\Select::make('param_location')
+                                Select::make('param_location')
                                     ->label(__('Param location'))
                                     ->required()
                                     ->options([
@@ -134,7 +143,7 @@ class ApiDocsFormBuilder {
                                         'body' => 'Body param',
                                         'header' => 'Header param',
                                     ]),
-                                Forms\Components\Select::make('param_type')
+                                Select::make('param_type')
                                     ->label(__('Param type'))
                                     ->required()
                                     ->options([
@@ -142,13 +151,13 @@ class ApiDocsFormBuilder {
                                         'number' => 'Number',
                                         'boolean' => 'Boolean'
                                     ]),
-                                Forms\Components\TextInput::make('name')
+                                TextInput::make('name')
                                     ->label(__('Name'))
                                     ->required(),
-                                Forms\Components\TextInput::make('value')
+                                TextInput::make('value')
                                     ->label(__('Value'))
                                     ->required(),
-                                Forms\Components\Select::make('visible')
+                                Select::make('visible')
                                     ->label(__('Visible'))
                                     ->options([
                                         'always' => 'Always',
@@ -157,18 +166,18 @@ class ApiDocsFormBuilder {
                                     ->default('always')
                                     ->live()
                                     ->required(),
-                                Forms\Components\TextInput::make('visibility_condition_param')
+                                TextInput::make('visibility_condition_param')
                                     ->label(__('Visibility condition parameter'))
                                     ->hidden(fn (Get $get) => $get('visible') === 'always')
                                     ->required(),
-                                Forms\Components\TextInput::make('visibility_condition_value')
+                                TextInput::make('visibility_condition_value')
                                     ->label(__('Visibility condition value'))
                                     ->hidden(fn (Get $get) => $get('visible') === 'always')
                                     ->required(),
-                                Forms\Components\Toggle::make('required')
+                                Toggle::make('required')
                                     ->label(__('Required')),
                             ]),
-                        Forms\Components\Textarea::make('description')
+                        Textarea::make('description')
                             ->label(__('Description'))
                             ->rows(12),
                     ])
@@ -176,53 +185,53 @@ class ApiDocsFormBuilder {
     }
 
     public static function detailsTab (): Tab {
-        return Forms\Components\Tabs\Tab::make(__('Details'))
+        return Tab::make(__('Details'))
             ->columns()
             ->schema([
-                Forms\Components\Grid::make()
+                Grid::make()
                     ->columnSpan(1)
                     ->columns()
                     ->schema([
-                        Forms\Components\TextInput::make('details.title')
+                        TextInput::make('details.title')
                             ->label(__('Title'))
                             ->required()
                             ->columnSpan(1),
-                        Forms\Components\Select::make('details.request_type')
+                        Select::make('details.request_type')
                             ->label(__('Request Type'))
                             ->columnSpan(1)
                             ->options(RequestType::toArray())
                             ->required(),
-                        Forms\Components\TextInput::make('details.endpoint')
+                        TextInput::make('details.endpoint')
                             ->label(__('Endpoint'))
                             ->columnSpanFull()
                             ->live()
                             ->url(),
-                        Forms\Components\Toggle::make('details.auth_required')
+                        Toggle::make('details.auth_required')
                             ->label(__('Auth is required for this endpoint'))
                             ->columnSpan(1),
-                        Forms\Components\Toggle::make('details.collapsed')
+                        Toggle::make('details.collapsed')
                             ->columnSpan(1)
                             ->label(__('Collapsed by default?')),
                     ]),
-                Forms\Components\MarkdownEditor::make('details.description'),
+                MarkdownEditor::make('details.description'),
             ]);
     }
 
     public static function requestCodeTab (): Tab {
-        return Forms\Components\Tabs\Tab::make(__('Request Code'))
+        return Tab::make(__('Request Code'))
             ->columns(2)
             ->schema([
-                Forms\Components\Select::make('request_code.use_predefined_codes')
+                Select::make('request_code.use_predefined_codes')
                     ->options(PredefineCodeBuilderAction::toArray())
                     ->columnSpan(1)
                     ->multiple()
                     ->label(__('Predefined code examples')),
-                Forms\Components\Toggle::make('request_code.use_custom_codes')
+                Toggle::make('request_code.use_custom_codes')
                 ->columnSpan(1)
                     ->label(__('Custom code examples'))
                     ->live()
                     ->default(false),
-                Forms\Components\Repeater::make('request_code.custom_code')
+                Repeater::make('request_code.custom_code')
                     ->label(__('Custom code'))
                     ->columnSpanFull()
                     ->cloneable()
@@ -237,21 +246,21 @@ class ApiDocsFormBuilder {
                     ->collapsed()
                     ->visible(fn (Get $get) => $get('request_code.use_custom_codes') === true)
                     ->schema([
-                        Forms\Components\Grid::make()
+                        Grid::make()
                             ->columnSpan(1)
                             ->schema([
-                                Forms\Components\TextInput::make('app_type')
+                                TextInput::make('app_type')
                                     ->label(__('Lang'))
                                     ->hint(__('ex: cURL, PHP, Java...'))
                                     ->columnSpanFull()
                                     ->required(),
-                                Forms\Components\Select::make('code_style')
+                                Select::make('code_style')
                                     ->label(__('Code style'))
                                     ->columnSpanFull()
                                     ->options(CodeStyle::class)
                                     ->required(),
                             ]),
-                        Forms\Components\Textarea::make('body')
+                        Textarea::make('body')
                             ->label(__('Body'))
                             ->rows(5),
                     ])
@@ -259,9 +268,9 @@ class ApiDocsFormBuilder {
     }
 
     public static function responsesTab (): Tab {
-        return Forms\Components\Tabs\Tab::make('Responses')
+        return Tab::make('Responses')
         ->schema([
-            Forms\Components\Repeater::make('response')
+            Repeater::make('response')
                 ->collapsible()
                 ->collapsed()
                 ->cloneable()
@@ -274,38 +283,40 @@ class ApiDocsFormBuilder {
                 })
                 ->columns(2)
                 ->schema([
-                    Forms\Components\Grid::make()
+                    Grid::make()
                         ->columnSpan(1)
                         ->columns(2)
                         ->schema([
-                            Forms\Components\Select::make('status')
+                            Select::make('status')
                                 ->label(__('Status'))
                                 ->columnSpan(1)
-                                ->options(HttpStatuses::class)
+                                ->options(collect(HttpStatuses::cases())
+                                ->mapWithKeys(fn (HttpStatuses $status) => [$status->value => $status->getLabel()])
+                                ->toArray())
                                 ->live()
                                 ->afterStateUpdated(function ($state, callable $set) {
                                     if ($state && HttpStatuses::tryFrom($state)) {
                                         $status = HttpStatuses::from($state); // Get the enum instance from the code
-                            
                                         // Set the corresponding fields based on the selected status
                                         $set('title', $status->getLabel());
                                         $set('color', $status->getColor());
                                         $set('icon', $status->getIcon());
                                     }
                                 }),
-                            Forms\Components\TextInput::make('title')
+                            TextInput::make('title')
                                 ->required()
                                 ->label(__('Title'))
                                 ->columnSpan(1),
-                            Forms\Components\Textarea::make('description')
+                            Textarea::make('description')
                                 ->rows(8)
                                 ->label(__('Description'))
                                 ->columnSpanFull(),
                             IconPicker::make('icon')
                                 ->required()
+                                ->columns(3)
                                 ->label(__('Icon'))
                                 ->columnSpan(1),
-                            Forms\Components\Select::make('color')
+                            Select::make('color')
                                 ->allowHtml()
                                 ->label(__('Color'))
                                 ->columnSpan(1)
@@ -321,7 +332,7 @@ class ApiDocsFormBuilder {
                                         ]),
                                 ),
                             ]),
-                    Forms\Components\Textarea::make('body')
+                    Textarea::make('body')
                         ->rows(18)
                         ->label(__('Result'))
                 ])

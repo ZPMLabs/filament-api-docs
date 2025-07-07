@@ -79,7 +79,7 @@ class ExportJsonAction
         // Filter parameters to extract headers
         $headers = collect($params)
             ->filter(function($param)use ($params) {
-                $condParam = collect($params)->where('name', '=', $param['visibility_condition_param'])->first();
+                $condParam = ($param['visible'] == 'always' || !isset($param['visibility_condition_param'])) ? null : collect($params)->where('name', '=', $param['visibility_condition_param'])->first();
                 return $param['param_location'] === 'header' && ($param['visible'] === 'always' || ($param['visible'] === 'conditionally' && !is_null($condParam) && $condParam['value'] === $param['visibility_condition_value']));
             })
             ->map(function ($param) {
@@ -111,7 +111,7 @@ class ExportJsonAction
     {
         // Replace placeholders in the endpoint URL with parameter values
         collect($params)->filter(function($param) use ($params) {
-            $condParam = collect($params)->where('name', '=', $param['visibility_condition_param'])->first();
+            $condParam = ($param['visible'] == 'always' || !isset($param['visibility_condition_param'])) ? null : collect($params)->where('name', '=', $param['visibility_condition_param'])->first();
             return $param['param_location'] === 'query' && ($param['visible'] === 'always' || ($param['visible'] === 'conditionally' && !is_null($condParam) && $condParam['value'] === $param['visibility_condition_value']));
         })
         ->each(function ($param) use (&$endpoint) {
@@ -132,7 +132,7 @@ class ExportJsonAction
         // Filter and format query parameters
         return collect($params)
             ->filter(function($param)use ($params) {
-                $condParam = collect($params)->where('name', '=', $param['visibility_condition_param'])->first();
+                $condParam = ($param['visible'] == 'always' || !isset($param['visibility_condition_param'])) ? null : collect($params)->where('name', '=', $param['visibility_condition_param'])->first();
                 return $param['param_location'] === 'query' && ($param['visible'] === 'always' || ($param['visible'] === 'conditionally' && !is_null($condParam) && $condParam['value'] === $param['visibility_condition_value']));
             })
             ->map(function ($param) {
@@ -156,7 +156,7 @@ class ExportJsonAction
         // Extract and format body parameters
         $bodyParams = collect($params)
             ->filter(function($param)use ($params) {
-                $condParam = collect($params)->where('name', '=', $param['visibility_condition_param'])->first();
+                $condParam = ($param['visible'] == 'always' || !isset($param['visibility_condition_param'])) ? null : collect($params)->where('name', '=', $param['visibility_condition_param'])->first();
                 return $param['param_location'] === 'body' && ($param['visible'] === 'always' || ($param['visible'] === 'conditionally' && !is_null($condParam) && $condParam['value'] === $param['visibility_condition_value']));
             })
             ->mapWithKeys(function ($param) {

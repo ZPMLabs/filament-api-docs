@@ -2,16 +2,14 @@
 
 namespace ZPMLabs\FilamentApiDocsBuilder\Filament\Infolists;
 
-use Filament\Support\Enums\MaxWidth;
-use Illuminate\Contracts\Support\Htmlable;
-use Filament\Infolists\Components\Section;
+use Filament\Infolists\Components\KeyValueEntry;
 use Filament\Infolists\Components\TextEntry;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Support\Colors\Color;
 use Illuminate\Support\HtmlString;
-use Filament\Infolists\Components\Grid;
-use Filament\Infolists\Components\KeyValueEntry;
-use Filament\Infolists\Components\Tabs;
-use Filament\Infolists\Components\Tabs\Tab;
 use Illuminate\Database\Eloquent\Model;
 use ZPMLabs\FilamentApiDocsBuilder\Actions\PredefineCodeBuilderAction;
 use ZPMLabs\FilamentApiDocsBuilder\Filament\Actions\TestApiEndpointAction;
@@ -67,18 +65,18 @@ class ApiDocsInfolistBuilder
     protected function buildSection($item, $parameters, $allParams)
     {
         return Section::make($item['details']['title'])
+            ->columnSpanFull()
             ->description($this->getDescription($item)) // Set section description
             ->headerActions([
                 TestApiEndpointAction::make('test_endpoint')
                     ->item($item, $parameters, $allParams) // Add a "Test Endpoint" action
             ])
+            ->columns(2)
             ->collapsed(fn() => $item['details']['collapsed']) // Set default collapsed state
             ->schema([
                 Grid::make(1)
-                    ->columnSpan(1)
                     ->schema([$this->buildParametersTabs($parameters, $item['details']['auth_required'])]),
-                Grid::make()
-                    ->columnSpan(1)
+                Grid::make(1)
                     ->schema([
                         Tabs::make()
                             ->columnSpanFull()
@@ -86,8 +84,7 @@ class ApiDocsInfolistBuilder
                         ...$this->buildResponses($item), // Include response examples
                     ])
             ])
-            ->collapsible()
-            ->columns(2); // Make the section collapsible with two columns
+            ->collapsible(); // Make the section collapsible with two columns
     }
 
     /**
@@ -239,7 +236,7 @@ class ApiDocsInfolistBuilder
      */
     protected function isParamAlwaysVisible($allParams, $param): bool
     {
-        $condParam = $allParams->where('name', '=', $param['visibility_condition_param'])->first();
+        $condParam = ($param['visible'] == 'always' || !isset($param['visibility_condition_param'])) ? null : $allParams->where('name', '=', $param['visibility_condition_param'])->first();
         return ($param['visible'] === 'always' || ($param['visible'] === 'conditionally' && !is_null($condParam) && $condParam['value'] === $param['visibility_condition_value']));
     }
 
@@ -297,7 +294,7 @@ class ApiDocsInfolistBuilder
                 $parameters[$location]['params'][$param['name']] = $param;
             }
 
-            if ($param['visible'] === 'always') {
+            if ($param['visible'] == 'always') {
                 $parameters[$location]['always_visible'][($param['required'] ? $param['name'] . "*" : $param['name']) . ': ' . $param['value']] = $param['description'];
             } else {
                 $key = __('`:param` is equal to `:value`', [

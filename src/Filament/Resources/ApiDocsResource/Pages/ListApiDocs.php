@@ -2,7 +2,7 @@
 
 namespace ZPMLabs\FilamentApiDocsBuilder\Filament\Resources\ApiDocsResource\Pages;
 
-use Filament\Actions;
+use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 use ZPMLabs\FilamentApiDocsBuilder\Filament\Actions\CollectionImporterAction;
 
@@ -16,7 +16,7 @@ class ListApiDocs extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            CreateAction::make(),
             CollectionImporterAction::make('importer'),
         ];
     }

@@ -10,17 +10,22 @@
             copy() {
                 const code = document.querySelector(`#${this.codeElID}`).textContent;
                 navigator.clipboard.writeText(code);
-
-                // Update buttonText to 'Copied'
                 this.buttonText = 'Copied';
-
-                // Use a delayed reset after 1 second
                 setTimeout(() => {
                     this.buttonText = 'Copy';
                 }, 1000);
             }
         }"
     >
-        <pre class="relative"><button @click="copy()" x-text="buttonText" class="absolute top-1 right-1 text-xs text-gray-500" style="right: 10px"></button><code id="{{ $codeID }}">{{ $getValue() }}</code></pre>
+        <div class="flex justify-end mb-1">
+            <button 
+                @click="copy()" 
+                x-text="buttonText"
+                class="text-xs bg-primary-100 text-primary-800 font-medium px-2 py-0.5 rounded-full"
+            ></button>
+        </div>
+
+        <pre><code id="{{ $codeID }}">{{ $getValue() }}</code></pre>
     </div>
 </x-dynamic-component>
+

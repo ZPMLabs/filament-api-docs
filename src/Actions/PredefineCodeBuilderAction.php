@@ -34,7 +34,7 @@ class PredefineCodeBuilderAction
 
         // Filter query parameters based on visibility conditions
         $queryParams = array_filter($params, function ($param) use ($params) {
-            $condParam = collect($params)->where('name', '=', $param['visibility_condition_param'])->first();
+            $condParam = ($param['visible'] == 'always' || !isset($param['visibility_condition_param'])) ? null : collect($params)->where('name', '=', $param['visibility_condition_param'])->first();
             $conditionally = ($param['visible'] === 'always' || ($param['visible'] === 'conditionally' && !is_null($condParam) && $condParam['value'] === $param['visibility_condition_value']));
 
             return $param['param_location'] === "query" && $conditionally;
@@ -42,7 +42,7 @@ class PredefineCodeBuilderAction
 
         // Filter header parameters based on visibility conditions
         $headers = array_filter($params, function ($param) use ($params) {
-            $condParam = collect($params)->where('name', '=', $param['visibility_condition_param'])->first();
+            $condParam = ($param['visible'] == 'always' || !isset($param['visibility_condition_param'])) ? null : collect($params)->where('name', '=', $param['visibility_condition_param'])->first();
             $conditionally = ($param['visible'] === 'always' || ($param['visible'] === 'conditionally' && !is_null($condParam) && $condParam['value'] === $param['visibility_condition_value']));
 
             return $param['param_location'] === "header" && $conditionally;
@@ -50,7 +50,7 @@ class PredefineCodeBuilderAction
 
         // Filter body parameters based on visibility conditions
         $bodyParams = array_filter($params, function ($param) use ($params) {
-            $condParam = collect($params)->where('name', '=', $param['visibility_condition_param'])->first();
+            $condParam = ($param['visible'] == 'always' || !isset($param['visibility_condition_param'])) ? null : collect($params)->where('name', '=', $param['visibility_condition_param'])->first();
             $conditionally = ($param['visible'] === 'always' || ($param['visible'] === 'conditionally' && !is_null($condParam) && $condParam['value'] === $param['visibility_condition_value']));
 
             return $param['param_location'] === "body" && $conditionally;

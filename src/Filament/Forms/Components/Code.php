@@ -4,8 +4,8 @@ namespace ZPMLabs\FilamentApiDocsBuilder\Filament\Forms\Components;
 
 use Closure;
 use Filament\Infolists\Components\Concerns;
-use Filament\Infolists\Components\Contracts\HasAffixActions;
 use Filament\Infolists\Components\Entry;
+use Filament\Schemas\Components\Contracts\HasAffixActions;
 use Illuminate\Support\HtmlString;
 use Tempest\Highlight\Highlighter;
 use Tempest\Highlight\Themes\InlineTheme;
@@ -28,7 +28,7 @@ class Code extends Entry implements HasAffixActions
      */
     protected string $view = 'filament-api-docs-builder::filament.code';
 
-    /**
+    /**TestApiEndpointAction
      * The programming language for syntax highlighting.
      *
      * @var string|Closure|null
@@ -49,7 +49,7 @@ class Code extends Entry implements HasAffixActions
         // Highlight the code using the Tempest library and return as HTML-safe string.
         return new HtmlString(
             (new Highlighter(
-                new InlineTheme(__DIR__ . '/../../../../vendor/tempest/highlight/src/Themes/Css/solarized-dark.css')
+                new InlineTheme(__DIR__ . '/../../../../resources/themes/solarized-dark.css')
             ))->parse($state, $language)
         );
     }

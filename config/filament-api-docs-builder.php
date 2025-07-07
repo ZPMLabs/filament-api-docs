@@ -33,7 +33,8 @@ return [
     ],
 
     // Resource class used for managing API documentation within Filament
-    'resource' => \ZPMLabs\FilamentApiDocsBuilder\Filament\Resources\ApiDocsResource::class,
+    'resource' => \ZPMLabs\FilamentApiDocsBuilder\Filament\Resources\ApiDocsResource\ApiDocsResource::class,
+    'resource_icon' => \Filament\Support\Icons\Heroicon::OutlinedCodeBracket,
 
     // Model class representing API documentation
     'model' => \ZPMLabs\FilamentApiDocsBuilder\Models\ApiDocs::class,

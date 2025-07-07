@@ -2,16 +2,19 @@
 
 namespace ZPMLabs\FilamentApiDocsBuilder\Filament\Actions;
 
+use Filament\Actions\Action;
+use Filament\Forms\Components\KeyValue;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\ViewField;
+use Filament\Schemas\Components\Actions;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Support\Enums\Width;
 use ZPMLabs\FilamentApiDocsBuilder\Enums\HttpStatuses;
-use Filament\Infolists\Components\Actions\Action;
 use Illuminate\Support\Facades\Http;
 use InvalidArgumentException;
-use Filament\Forms;
-use Filament\Forms\Get;
-use Filament\Forms\Set;
-use Filament\Support\Enums\MaxWidth;
 use Illuminate\Support\Collection;
-use Illuminate\Support\HtmlString;
 use Tempest\Highlight\Highlighter;
 use Tempest\Highlight\Themes\InlineTheme;
 
@@ -38,7 +41,7 @@ class TestApiEndpointAction extends Action
         $testingForm = [];
 
         if ($item['details']['auth_required']) {
-            $testingForm[] = Forms\Components\TextInput::make('token')
+            $testingForm[] = TextInput::make('token')
                 ->columnSpanFull()
                 ->revealable()
                 ->password(); // Token input for authentication
@@ -50,23 +53,23 @@ class TestApiEndpointAction extends Action
         $this->hidden(fn() => empty($item['details']['endpoint']))
             ->label('Test Endpoint')
             ->modalDescription($item['details']['endpoint'])
-            ->modalWidth(MaxWidth::FiveExtraLarge)
+            ->modalWidth(Width::FiveExtraLarge)
             ->modalCancelAction(false)
             ->modalSubmitAction(false)
             ->form([
-                Forms\Components\Grid::make()
+                Grid::make()
                     ->columns()
                     ->schema([
-                        Forms\Components\Grid::make()
+                        Grid::make()
                             ->columnSpan(1)
                             ->schema($testingForm), // Form fields for API testing
-                        Forms\Components\ViewField::make('response')
+                        ViewField::make('response')
                             ->view('filament-api-docs-builder::filament.viewJson')
                             ->default(['response' => '{}'])
                             ->columnSpan(1) // Display formatted response
                     ]),
-                Forms\Components\Actions::make([
-                    Forms\Components\Actions\Action::make('send')
+                Actions::make([
+                    Action::make('send')
                         ->action(function (Set $set, Get $get) use ($item, $allParams) {
                             // Handle request sending and response processing
                             $data = $get();
@@ -99,7 +102,7 @@ class TestApiEndpointAction extends Action
         $prettyResponse = json_encode($responseData, JSON_PRETTY_PRINT);
 
         // Highlight the JSON response using a syntax highlighter
-        $formated = (new Highlighter(new InlineTheme(__DIR__ . '/../../../vendor/tempest/highlight/src/Themes/Css/solarized-dark.css')))
+        $formated = (new Highlighter(new InlineTheme(__DIR__ . '/../../../resources/themes/solarized-dark.css')))
             ->parse($prettyResponse, 'json');
 
         $set('response', [
@@ -211,7 +214,7 @@ class TestApiEndpointAction extends Action
 
         foreach ($parameters as $location => $data) {
             if (!empty($data['params'])) {
-                $components[$location] = Forms\Components\KeyValue::make(strtolower($location))
+                $components[$location] = KeyValue::make(strtolower($location))
                     ->label(ucfirst($location))
                     ->columnSpanFull()
                     ->addable(false)
@@ -239,7 +242,7 @@ class TestApiEndpointAction extends Action
     {
         foreach ($allParams->where('visible', 'conditionally') as $param) {
             $name = $param['required'] ? $param['name'] . '*' : $param['name'];
-            $condParam = $allParams->where('name', $param['visibility_condition_param'])->first();
+            $condParam = ($param['visible'] == 'always' || !isset($param['visibility_condition_param'])) ? null : $allParams->where('name', $param['visibility_condition_param'])->first();
 
             if ($this->shouldRemoveParamFromState($param, $location, $state, $name, $condParam)) {
                 unset($state[$name]);
@@ -250,7 +253,7 @@ class TestApiEndpointAction extends Action
 
         foreach ($allParams->where('visible', 'conditionally') as $param) {
             $name = $param['required'] ? $param['name'] . '*' : $param['name'];
-            $condParam = $allParams->where('name', $param['visibility_condition_param'])->first();
+            $condParam = ($param['visible'] == 'always' || !isset($param['visibility_condition_param'])) ? null : $allParams->where('name', $param['visibility_condition_param'])->first();
 
             if ($this->shouldAddParamToState($param, $location, $state, $name, $condParam)) {
                 $state[$name] = $param['value'];

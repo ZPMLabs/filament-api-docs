@@ -13,15 +13,6 @@ This package allows you to build a good looking and functional api documentation
 
 You can install the package via composer repositories:
 
-```json
-"repositories": [
-    {
-        "type": "vsc",
-        "url": "https://github.com/ZPMLabs/filament-api-docs"
-    }
-]
-```
-
 ```bash
 composer require zpmlabs/filament-api-docs-builder
 ```
@@ -30,6 +21,12 @@ You can install the package with:
 
 ```bash
 php artisan filament-api-docs-builder:install
+```
+
+Also you need to add a source to your custom theme:
+
+```css
+@source '<path-to-vendor>/vendor/zpmlabs/filament-api-docs-builder/resources/views/filament/**/*';
 ```
 
 Otherwise you can publish and run the migrations with:
